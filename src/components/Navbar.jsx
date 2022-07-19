@@ -25,6 +25,8 @@ const Navbar = () => {
     setAnchorElNav(event.currentTarget);
   };
 
+  console.log(anchorElNav)
+
   const {logOut} =useUserAuth();
   
   const handleLogout = async () => {
@@ -36,8 +38,11 @@ const Navbar = () => {
   }
 
   
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (e) => {
     setAnchorElNav(null);
+    e.currentTarget.innerText === "Logout" && handleLogout()
+    e.currentTarget.innerText === "Login" && navigate("/Login")
+    e.currentTarget.innerText === "Home" && navigate("/Home")
   };
 
   
@@ -76,7 +81,6 @@ const Navbar = () => {
                 vertical: 'bottom',
                 horizontal: 'left',
               }}
-              onClick={(e) => console.log(e.currentTarget.innerText)}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
@@ -90,6 +94,7 @@ const Navbar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
+                
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
