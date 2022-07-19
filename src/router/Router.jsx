@@ -7,16 +7,19 @@ import Register from '../pages/Register';
 import NotFound from '../pages/NotFound';
 import PrivateRouter from "./PrivateRouter";
 import { UserAuthContextProvider } from "../context/UserAuthContext";
+import { Toaster } from 'react-hot-toast';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <UserAuthContextProvider>
         <Navbar />
+        <Toaster/>
         <Routes>
           <Route path="/" element={<PrivateRouter><Home/></PrivateRouter>} />
-          <Route path="login" element={<Login/>} />
-          <Route path="register" element={<Register/>} />
+          <Route path="/Home" element={<PrivateRouter><Home/></PrivateRouter>} />
+          <Route path="/Login" element={<Login/>} />
+          <Route path="/Register" element={<Register/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </UserAuthContextProvider>

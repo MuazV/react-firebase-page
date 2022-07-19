@@ -4,7 +4,7 @@ import {useUserAuth} from "../context/UserAuthContext";
 const PrivateRouter = ({children}) => {
     let {user} = useUserAuth();
 
-   return user ? children : <Navigate to="/login" />;
+   return user ? children : <Navigate to="/Login" />;
 
 }
 

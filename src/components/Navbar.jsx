@@ -10,6 +10,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../assets/logo.png';
+import {useNavigate} from "react-router-dom"
+import { useUserAuth } from '../context/UserAuthContext';
 
 const pages = ['Home', 'Login', 'Logout'];
 
@@ -17,9 +19,22 @@ const pages = ['Home', 'Login', 'Logout'];
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
+  const navigate = useNavigate()
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
+  const {logOut} =useUserAuth();
+  
+  const handleLogout = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -61,6 +76,7 @@ const Navbar = () => {
                 vertical: 'bottom',
                 horizontal: 'left',
               }}
+              onClick={(e) => console.log(e.currentTarget.innerText)}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
@@ -83,8 +99,8 @@ const Navbar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' }}
+                onClick={(e) => e.currentTarget.innerText === "Logout" ? handleLogout() : navigate(`/${page}`)}
+                sx={{ my: 2, color: 'black', display: 'block', textTransform: 'none' }}
               >
                 {page}
               </Button>
