@@ -6,7 +6,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-// import Alert from "@mui/material/Alert";
+import Alert from "@mui/material/Alert";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -14,7 +14,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
 
 function Copyright(props) {
   return (
@@ -56,7 +55,6 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-    {error && toast.error('Waiting')}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -73,7 +71,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          
+          {error && <Alert severity="error">{error}</Alert>}
           <Box
             component="form"
             onSubmit={handleSubmit}
