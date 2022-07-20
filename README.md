@@ -13,4 +13,4 @@ I created a simple web page with Firebase authentication and Material UI. I trie
 ***
 [Click Here To See All Page](https://mui-firebase-page.netlify.app)
 ***
-![]()
+![](https://github.com/MuazV/react-firebase-page/blob/master/src/assets/Animation.gif)
